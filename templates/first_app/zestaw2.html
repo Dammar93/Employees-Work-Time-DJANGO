@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load tags %}
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Zestawienie 2</title>
+  <link rel="stylesheet" href="{% static "css/mystyle.css" %}"/>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+</head>
+<body>
+  <div id="container">
+    <div id="odnosnik">
+      <ul>
+        <li><a href="{% url 'index' %}">Zestawienie 1</a></li>
+        <li><a class="active" href="{% url 'first_app:zestaw2' %}">Zestawienie 2</a></li>
+        <li><a href="{% url 'first_app:zestaw3' %}">Zestawienie 3</a></li>
+      </ul>
+    </div>
+    <div id="pasek">
+      <div><center>
+        <form action="" name="zestawienie2" method="POST">
+          {% csrf_token %}
+          <select name="wybor_prac">
+            {% for k,v in zestaw1.0.items %}
+            <option value="{{v}}" {% if v == zestaw1.3 %} selected {% endif %}>{{v}}</option>
+            {% endfor %}
+          </select>
+          <select name="wybor_mies">
+            {% for k,v in zestaw1.1.items %}
+            <option value="{{k}}" {% if k|stringformat:"i" == zestaw1.4 %} selected {% endif %}>{{v}}</option>
+
+            {% endfor %}
+          </select>
+          <select name="wybor_rok">
+            {% for v in zestaw1.2 %}
+              <option value="{{v}}" {% if v|stringformat:"i" == zestaw1.5 %} selected {% endif %}>{{v}}</option>
+            {% endfor %}
+          </select>
+          <input type="submit" value="Pokaż Zestawienie">
+        </form></center>
+    </div>
+    </div>
+    <div>
+      <center>
+        <table id="tabela2">
+          <tr>
+              <th>Dzień</th>
+              <th>Godziny Przepracowane <br> {{ czaspracy }}</th>
+          </tr>
+
+
+          {% for tygodnie in dni_miesiaca %}
+            {% for dzien in tygodnie %}
+              {% if dzien != 0 %}
+
+          <tr {% if dzien == tygodnie.5 or dzien == tygodnie.6 %} class="weekend" {% endif %}>
+            <td><center>{{dzien}}</center></td>
+            <td><center>{{ godzinydzien|keyvalue:dzien }}</center></td>
+          </tr>
+              {% endif %}
+            {% endfor %}
+          {% endfor %}
+        </table>
+      </center>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Zestawienie 1</title>
+  <link rel="stylesheet" href="{% static "css/mystyle.css" %}"/>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+</head>
+<body>
+  <div id="container">
+    <div id="odnosnik">
+      <ul>
+        <li><a class="active" href="{% url 'index' %}">Zestawienie 1</a></li>
+        <li><a href="{% url 'first_app:zestaw2' %}">Zestawienie 2</a></li>
+        <li><a href="{% url 'first_app:zestaw3' %}">Zestawienie 3</a></li>
+      </ul>
+    </div>
+    <div id="pasek">
+      <div>
+        <form action="" name="zestawienie1" method="POST">
+          {% csrf_token %}
+          <input type="date" name="data1" value="{{zestaw1.1}}" min="{{zestaw1.1}}" max="{{zestaw1.2}}">
+          <input type="date" name="data2" value="{{zestaw1.2}}" min="{{zestaw1.1}}" max="{{zestaw1.2}}">
+          <select name="wybor_prac">
+            {% for k,v in lista_pracownikow.items %}
+            <option value="{{v}}" {% if v == zestaw1.0 %} selected {% endif %}>{{v}}</option>
+            {% endfor %}
+          </select>
+          <input type="submit" value="Pokaż zdarzenia">
+          <input type="number" value="{{ rekordy }}" name="rekordy" min="1" max="{{zestaw1.3}}" required value="" id="rekordy">
+          <label for="rekordy">Liczba Zdarzeń: </label>
+        </form>
+    </div>
+    </div>
+    <div>
+      <table id="tabela">
+        <tr>
+          {% for e in data %}
+            <th>{{e}}</th>
+          {% endfor %}
+        </tr>
+
+        {% for e in data.values %}
+        <tr>
+          <td><center>{{e.0}}</center></td>
+          <td><center>{{e.1}}</center></td>
+          <td><center>{{e.2}}</center></td>
+          <td><center>{{e.3}}</center></td>
+          <td><center>{{e.4}}</center></td>
+          <td><center>{{e.5}}</center></td>
+        </tr>
+        {% endfor %}
+    </table>
+    </div>
+  </div>
+</body>
+</html>

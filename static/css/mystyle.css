@@ -1,0 +1,96 @@
+#container{
+  width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#pasek{
+  margin-left: auto;
+  margin-right: auto;
+  padding: 15px;
+  background-color: black;
+  opacity: 0.7;
+  margin-bottom: 5px;
+}
+
+#rekordy{
+  float: right;
+}
+
+label{
+  color: white;
+  float: right;
+  margin-right: 10px;
+}
+
+#tabela{
+  border: 1px solid black;
+  text-align: center;
+  width: 100%;
+  background-color: #bfbfbf;
+  border-spacing: 0 0;
+}
+
+#tabela tr:nth-child(even){
+  background: white;
+}
+
+#tabela2 tr:nth-child(even){
+  background: white;
+}
+
+#tabela2{
+  border: 1px solid black;
+  text-align: center;
+  width: 50%;
+  background-color: #bfbfbf;
+  border-spacing: 0 0;
+}
+
+#tabela2 td{
+  padding: 3px;
+}
+
+
+#tabela td{
+  max-width: 200px;
+  padding: 3px;
+}
+
+body{
+  font-family: 'Montserrat', sans-serif;
+  background-color: #f2f2f2;
+}
+
+table#tabela2 .weekend{
+    background-color: #ff3333;
+}
+
+li{
+  display: inline;
+  float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111;
+}
+
+ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+.active {
+    background-color: #4CAF50;
+}

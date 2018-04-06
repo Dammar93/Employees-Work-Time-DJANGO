@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load tags %}
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Zestawienie 3</title>
+  <link rel="stylesheet" href="{% static "css/mystyle.css" %}"/>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+</head>
+<body>
+  <div id="container">
+    <div id="odnosnik">
+    <ul>
+      <li><a href="{% url 'index' %}">Zestawienie 1</a></li>
+      <li><a href="{% url 'first_app:zestaw2' %}">Zestawienie 2</a></li>
+      <li class="active"><a href="{% url 'first_app:zestaw3' %}">Zestawienie 3</a></li>
+    </ul>
+    </div>
+    <div id="pasek">
+      <div><center>
+        <form action="" name="zestawienie3" method="POST">
+          {% csrf_token %}
+          <select name="wybor_mies">
+            {% for k,v in zestaw1.1.items %}
+            <option value="{{k}}" {% if k|stringformat:"i" == zestaw1.4 %} selected {% endif %}>{{v}}</option>
+            {% endfor %}
+          </select>
+          <select name="wybor_rok">
+            {% for rok in zestaw1.2 %}
+            <option value="{{rok}}">{{ rok }}</option>
+            {% endfor %}
+          </select>
+          <input type="submit" value="Pokaż Zestawienie">
+        </center>
+        </form>
+    </div>
+    </div>
+    <div>
+      <center>
+        <table id="tabela2">
+          <tr>
+              <th>Pracownik <br></th>
+              <th>Godziny Przepracowane <br></th>
+          </tr>
+
+
+              {% for id, imiona in zestaw1.0.items %}
+
+
+          <tr>
+            <td><center>{{ imiona }}</center></td>
+            <td><center>{{ prac_czasmiesiac|keyvalue:id }}</center></td>
+          </tr>
+            {% endfor %}
+        </table>
+      </center>
+    </div>
+  </div>
+</body>
+</html>
